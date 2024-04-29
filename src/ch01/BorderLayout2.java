@@ -1,18 +1,22 @@
 package ch01;
 
+//Ctrl + shift + o;
+// Ctrl + shift + s;
+// ctrl + shift + f;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class BorderLayout2 extends JFrame {
-	
+
 	final int WIDTH = 600;
 	final int HEIGHT = 600;
-	
+
 	JButton[] buttons;
 	String[] directions = { BorderLayout.EAST, BorderLayout.WEST, BorderLayout.NORTH, BorderLayout.SOUTH,
-			 BorderLayout.CENTER };
+			BorderLayout.CENTER };
 
 	// Ctrl + shift + o;
 

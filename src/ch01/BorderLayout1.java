@@ -1,13 +1,15 @@
 package ch01;
 
+// 단축키
+//Ctrl + shift + o;
+// Ctrl + shift + s;
+// ctrl + shift + f;
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class BorderLayout1 extends JFrame {
-
-	// Ctrl + shift + o;
 
 	// 생성자
 	public BorderLayout1() {
