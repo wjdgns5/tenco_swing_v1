@@ -43,8 +43,9 @@ public class BorderLayout2 extends JFrame {
 		// 반복문을 활용해서 코드를 완성하세요.
 		buttons = new JButton[directions.length];
 		for (int i = 0; i < buttons.length; i++) {
+			//add(buttons[i] = new JButton(directions[i]), directions[i]);
 			add(buttons[i] = new JButton(directions[i]), directions[i]);
-
+			
 		}
 	}
 
