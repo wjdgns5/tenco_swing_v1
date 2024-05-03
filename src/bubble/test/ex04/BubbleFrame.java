@@ -1,4 +1,4 @@
-package bubble.test.ex03;
+package bubble.test.ex04;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -11,25 +11,23 @@ public class BubbleFrame extends JFrame {
 
 	private JLabel backgroundMap;
 	// 포함관계 - 콤포지션
-	private Player player; // 포함관계
+	private Player player;
 
 	public BubbleFrame() {
+
 		initData();
-		setInitData();
+		setInitLayout();
 		addEventListener();
-		
+
 		// Player 백그라운드 서비스 시작
-		// new BackgroundPlayerService(player); // Runnable 타입
-		new Thread().start();
+		new Thread(new BackgroundPlayerService(player)).start();
 	}
 
 	private void initData() {
-		// 잠시 수정 Todo 이미지 변경
-		// backgroundMap = new JLabel(new ImageIcon("img/backgroundMapService.png"));
-		 backgroundMap = new JLabel(new ImageIcon("img/backgroundMapService.png"));
+		// todo 이미지 변경
+		backgroundMap = new JLabel(new ImageIcon("img/backgroundMapService.png"));
+		// backgroundMap = new JLabel(new ImageIcon("img/test.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		// 전체 프레임 안에 루트 패널이 있다.
 		// Frame --> root Panel
 		setContentPane(backgroundMap); // add 처리
 		setSize(1000, 640);
@@ -38,68 +36,63 @@ public class BubbleFrame extends JFrame {
 
 	}
 
-	private void setInitData() {
-
+	private void setInitLayout() {
 		// 좌표 값으로 배치
 		setLayout(null);
-		setResizable(false); // 프레임 크기 조절 여부
-		setLocationRelativeTo(null); // JFrame 여러개 모니터 가운데 자동 배치
+		setResizable(false); // 프레임 조절 불가
+		setLocationRelativeTo(null); // JFrame 여러분 모니터 가운데 자동 배치
 		setVisible(true);
 
-		add(player); // 좌표와 크키가 없어서 나타나지 않음
-
+		add(player);
 	}
 
 	private void addEventListener() {
 
 		this.addKeyListener(new KeyAdapter() {
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				System.out.println("key code : " + e.getKeyCode());
 
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_LEFT:
-					player.left();
-					// 구현
+					if (!player.isLeft() && !player.isLeftWallCrash()) {
+						player.left();
+					}
 					break;
-
 				case KeyEvent.VK_RIGHT:
-					player.right();
-					// 구현
+					if (!player.isRight() && !player.isRightWallCrash()) {
+						player.right();
+						defualt:
+							break;
+					}
 					break;
-
 				case KeyEvent.VK_UP:
 					player.up();
-					// 구현
 					break;
-				} // end of switch
+					default:
+						break;
+				}
 			} // end of KeyPressed
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-
 				switch (e.getKeyCode()) {
 				case KeyEvent.VK_LEFT:
 					player.setLeft(false);
-					// 구현
 					break;
-
 				case KeyEvent.VK_RIGHT:
 					player.setRight(false);
-					// 구현
 					break;
-				
-				} // end of switch
-
+				}
 			} // end of KeyReleased
 
 		});
-
 	}
 
 	// 코드 테스트
 	public static void main(String[] args) {
 		new BubbleFrame();
-	}
+	} // end of main
 
 }
